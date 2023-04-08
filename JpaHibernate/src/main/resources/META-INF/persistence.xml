@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="default">
+    <class>dto.User</class>
+    <class>dto.Person</class>
+    <class>dto.Product</class>
+    <class>dto.Purchase</class>
+    <properties>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+      <!--El dialecto elegimos dependiendo de la base de datos por ejemplo para bd H2 database,
+      se tendria que usar org.hibernate.dialect.H2Dialect, este valor es cuando se publica este
+      repositorio podria llegar a cambiar-->
+
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/JpaHibernate"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="password"/>
+    </properties>
+  </persistence-unit>
+</persistence>

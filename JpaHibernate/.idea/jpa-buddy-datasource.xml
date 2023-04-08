@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="add602aa-7edd-4ce2-ba04-7ce1ac31447c" name="JpaEclipseLink" url="jdbc:mysql://localhost/JpaEclipseLink?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.cj.jdbc.Driver" />
+    </data-sources>
+    <data-source-infos>
+      <data-source-info id="add602aa-7edd-4ce2-ba04-7ce1ac31447c" persistence-unit-name="test" />
+      <data-source-info id="" persistence-unit-name="persons" />
+      <data-source-info id="add602aa-7edd-4ce2-ba04-7ce1ac31447c" persistence-unit-name="person" />
+    </data-source-infos>
+  </component>
+</project>

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="JpaEclipseLink" />
         <module name="Jpa" />
+        <module name="JpaHibernate" />
       </profile>
     </annotationProcessing>
   </component>
