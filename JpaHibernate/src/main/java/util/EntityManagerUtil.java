@@ -21,6 +21,9 @@ public class EntityManagerUtil {
 //------------------Find User----------------------
     System.out.println(new UtilQuery<User, Long>(User.class).find(1L, em));
 //-------------------------------------------------
+//-----------------Update User------------------
+    new UtilQuery<User, Long>(User.class).find(1L, em).setEmail("update@test.com");
+//----------------------------------------
 
 //-----------------List Users----------------------
     List<User> users = new UtilQuery<User, Long>(User.class).getList(em);
