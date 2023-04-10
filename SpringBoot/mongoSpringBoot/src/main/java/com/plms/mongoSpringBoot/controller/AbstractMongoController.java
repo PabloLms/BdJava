@@ -10,7 +10,7 @@ abstract class AbstractMongoController<T, ID> {
 
   abstract ResponseEntity<Object> create(T entity);
 
-  abstract ResponseEntity<Object> update(T entity, ID id);
+//  abstract ResponseEntity<Object> update(T entity, ID id);
 
   abstract ResponseEntity<Object> delete(ID id);
 }

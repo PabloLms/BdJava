@@ -1,11 +1,14 @@
 package com.plms.mongoSpringBoot.controller;
 
 import com.plms.mongoSpringBoot.dto.User;
+import com.plms.mongoSpringBoot.dto.UserDto;
 import com.plms.mongoSpringBoot.handler.ResponseHandle;
+import com.plms.mongoSpringBoot.mapper.UserMapper;
 import com.plms.mongoSpringBoot.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +24,18 @@ public class UserController extends AbstractMongoController<User, String> {
   @Autowired
   private UserRepository userRepository;
 
+  @Autowired
+  private UserMapper userMapper;
+
+  @Autowired
+  private MongoTemplate mongoTemplate;
+
 
   @RequestMapping(method = RequestMethod.GET)
   @Override
   public ResponseEntity<Object> getAll() {
     try {
-      List<User> users = userRepository.findAll();
+      List<User> users = mongoTemplate.findAll(User.class);
       return ResponseHandle.generateResponse("Success", HttpStatus.OK, users);
     } catch (Exception ex) {
       return ResponseHandle.generateResponse(ex.getMessage(), HttpStatus.MULTI_STATUS, null);
@@ -39,9 +48,8 @@ public class UserController extends AbstractMongoController<User, String> {
     try {
       Optional<User> userOptional = userRepository.findById(userId);
       return userOptional.map(
-              user -> ResponseHandle.generateResponse("Success", HttpStatus.OK, user))
-          .orElseGet(
-              () -> ResponseHandle.generateResponse("Not found user", HttpStatus.NOT_FOUND, null));
+          user -> ResponseHandle.generateResponse("Success", HttpStatus.OK, user)).orElseGet(
+          () -> ResponseHandle.generateResponse("Not found user", HttpStatus.NOT_FOUND, null));
     } catch (Exception ex) {
       return ResponseHandle.generateResponse(ex.getMessage(), HttpStatus.MULTI_STATUS, null);
     }
@@ -59,15 +67,17 @@ public class UserController extends AbstractMongoController<User, String> {
   }
 
   @RequestMapping(value = "/update/{userId}", method = RequestMethod.PUT)
-  @Override
-  public ResponseEntity<Object> update(@RequestBody User user, @PathVariable String userId) {
+//  @Override
+  public ResponseEntity<Object> update(@RequestBody UserDto user, @PathVariable String userId) {
     try {
       Optional<User> optionalUser = userRepository.findById(userId);
       if (optionalUser.isPresent()) {
         User userUpdate = optionalUser.get();
-        userUpdate.setName(user.getName());
-        userUpdate.setLastName(user.getLastName());
-        userUpdate.setAge(user.getAge());
+
+//        userUpdate.setName(user.getName());
+//        userUpdate.setLastName(user.getLastName());
+//        userUpdate.setAge(user.getAge());
+        userMapper.update(user, userUpdate);
         User userSave = userRepository.save(userUpdate);
         return ResponseHandle.generateResponse("user updated", HttpStatus.OK, userSave);
       } else {
