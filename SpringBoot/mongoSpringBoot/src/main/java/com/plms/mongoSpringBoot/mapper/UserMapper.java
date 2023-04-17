@@ -1,7 +1,7 @@
 package com.plms.mongoSpringBoot.mapper;
 
-import com.plms.mongoSpringBoot.dto.User;
 import com.plms.mongoSpringBoot.dto.UserDto;
+import com.plms.mongoSpringBoot.entities.User;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

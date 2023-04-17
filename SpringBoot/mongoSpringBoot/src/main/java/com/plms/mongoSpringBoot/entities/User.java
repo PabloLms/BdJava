@@ -1,4 +1,4 @@
-package com.plms.mongoSpringBoot.dto;
+package com.plms.mongoSpringBoot.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +16,16 @@ public class User {
 
   @Id
   private String id;
+
   private String name;
+
   private String lastName;
+
+  private String email;
+
+  private String password;
+
   private Integer age;
+
+  private Address address;
 }
